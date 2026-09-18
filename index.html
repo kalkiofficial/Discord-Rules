@@ -1,1 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Jem • Server Rules</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top, #202b52 0%, #0b0d14 42%, #07080c 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            margin: auto;
+        }
+
+        /* Header */
+
+        .header {
+            text-align: center;
+            padding: 45px 20px 35px;
+        }
+
+        .server-icon {
+            width: 82px;
+            height: 82px;
+            margin: auto;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #5865f2, #7289da);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+            box-shadow: 0 15px 40px rgba(88, 101, 242, 0.3);
+        }
+
+        .header h1 {
+            margin-top: 22px;
+            font-size: 42px;
+            letter-spacing: -1px;
+        }
+
+        .header p {
+            margin-top: 10px;
+            color: #aeb4c2;
+            font-size: 16px;
+        }
+
+        .status {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 8px 14px;
+            border-radius: 50px;
+            background: rgba(88, 101, 242, 0.12);
+            border: 1px solid rgba(88, 101, 242, 0.3);
+            color: #aeb8ff;
+            font-size: 13px;
+        }
+
+        /* Notice */
+
+        .notice {
+            background: rgba(255, 255, 255, 0.045);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 18px;
+            line-height: 1.7;
+            color: #c9ced8;
+        }
+
+        .notice strong {
+            color: #ffffff;
+        }
+
+        /* Rules */
+
+        .rule {
+            background: rgba(20, 23, 32, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 22px;
+            margin-bottom: 14px;
+            transition: 0.25s ease;
+        }
+
+        .rule:hover {
+            transform: translateY(-2px);
+            border-color: rgba(88, 101, 242, 0.45);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .rule-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 42px;
+            height: 28px;
+            padding: 0 10px;
+            border-radius: 8px;
+            background: rgba(88, 101, 242, 0.16);
+            color: #9da8ff;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .rule h2 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .rule p {
+            color: #b4bac6;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        /* Moderation */
+
+        .moderation {
+            margin-top: 28px;
+            background: linear-gradient(
+                145deg,
+                rgba(88, 101, 242, 0.14),
+                rgba(255, 255, 255, 0.035)
+            );
+            border: 1px solid rgba(88, 101, 242, 0.25);
+            border-radius: 20px;
+            padding: 24px;
+        }
+
+        .moderation h2 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .moderation p {
+            color: #b9bfca;
+            line-height: 1.7;
+        }
+
+        .moderation ul {
+            margin: 16px 0 0 20px;
+            color: #b9bfca;
+            line-height: 1.8;
+        }
+
+        /* Buttons */
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 14px 22px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.2s ease;
+        }
+
+        .discord {
+            background: #5865f2;
+            color: white;
+            box-shadow: 0 10px 25px rgba(88, 101, 242, 0.25);
+        }
+
+        .discord:hover {
+            background: #4752c4;
+            transform: translateY(-2px);
+        }
+
+        .top {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #d8dce5;
+        }
+
+        .top:hover {
+            background: rgba(255, 255, 255, 0.11);
+        }
+
+        /* Footer */
+
+        footer {
+            text-align: center;
+            color: #686f7d;
+            font-size: 13px;
+            padding: 15px 0 25px;
+        }
+
+        footer span {
+            color: #9da8ff;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 12px;
+            }
+
+            .header {
+                padding: 35px 12px 28px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .server-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 32px;
+            }
+
+            .rule {
+                padding: 18px;
+                border-radius: 15px;
+            }
+
+            .rule h2 {
+                font-size: 17px;
+            }
+
+            .rule p {
+                font-size: 14px;
+            }
+
+            .button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container" id="top">
+
+    <!-- Header -->
+
+    <header class="header">
+
+        <div class="server-icon">
+            💎
+        </div>
+
+        <h1>Jem</h1>
+
+        <p>Official Server Rules</p>
+
+        <div class="status">
+            🛡️ Please read before participating
+        </div>
+
+    </header>
+
+
+    <!-- Introduction -->
+
+    <div class="notice">
+        <strong>📜 Welcome to Jem.</strong><br>
+        Please read all of the following rules carefully.
+        By participating in this community, you are expected
+        to follow these guidelines and treat everyone with
+        respect.
+    </div>
+
+
+    <!-- Rules -->
+
+    <div class="rule">
+        <div class="rule-number">RULE #1</div>
+        <h2>🤝 Be Respectful</h2>
+        <p>
+            Be respectful to everyone. Treat all members with
+            kindness and basic respect.
+        </p>
+    </div>
+
+
+    <div class="rule">
+        <div class="rule-number">RULE #2</div>
+        <h2>🚫 No Politics</h2>
+        <p>
+            No political talks or political topics should be
+            raised in the server.
+        </p>
+    </div>
+
+
+    <div class="rule">
+        <div class="rule-number">RULE #3</div>
+        <h2>🛑 Zero Tolerance Content</h2>
+        <p>
+            No racism, homophobia, or pedophilia. Usernames and
+            statuses containing such content will result in an
+            instant ban. Jokes made about these subjects will
+            also result in an instant ban.
+        </p>
+    </div>
+
+
+    <div class="rule">
+        <div class="rule-number">RULE #4</div>
+        <h2>👤 Appropriate Usernames</h2>
+        <p>
+            No inappropriate usernames. Staff may change
+            inappropriate usernames when necessary.
+        </p>
+    </div>
+
+
+    <div class="rule">
+        <div class="rule-number">RULE #5</div>
+        <h2>📛 No Spamming</h2>
+        <p>
+            Do not spam in the Discord server under any
+            circumstance. Do not argue with moderators about
+            whether something is or is not considered spam.
+        </p>
+    </div>
+
+
+    <div class="rule">
+        <div class="rule-number">RULE #6</div>
+        <h2>🎥 Respect Content Creators</h2>
+        <p>
+            Do not talk disrespectfully about other content
+            creators.
+        </p>
+    </div>
+
+
+    <div class="rule">
+        <div class="rule-number">RULE #7</div>
+        <h2>🌐 English or Hindi Only</h2>
+        <p>
+            Please keep the server to English or Hindi.
+            This requirement exists to help our moderation team.
+            Failure to communicate in English or Hindi may result
+            in a kick.
+        </p>
+    </div>
+
+
+    <div class="rule">
+        <div class="rule-number">RULE #8</div>
+        <h2>🔞 Age Requirement</h2>
+        <p>
+            If someone is found to be under 13 years old,
+            that member will be banned according to Discord's
+            Terms of Service.
+        </p>
+    </div>
+
+
+    <div class="rule">
+        <div class="rule-number">RULE #9</div>
+        <h2>🌟 Keep It Friendly</h2>
+        <p>
+            Keep language and topics friendly. We want everyone
+            to feel safe and comfortable in this community.
+        </p>
+    </div>
+
+
+    <div class="rule">
+        <div class="rule-number">RULE #10</div>
+        <h2>🛡️ Respect Moderators</h2>
+        <p>
+            Listen to moderators. Arguing with or harassing
+            moderators may lead to a mute, kick, or ban.
+        </p>
+    </div>
+
+
+    <div class="rule">
+        <div class="rule-number">RULE #11</div>
+        <h2>⚠️ Staff Discretion</h2>
+        <p>
+            If any of the above rules are violated, staff
+            reserves the right to take the necessary action
+            against the offender.
+        </p>
+    </div>
+
+
+    <div class="rule">
+        <div class="rule-number">RULE #12</div>
+        <h2>📖 Follow Discord Rules</h2>
+        <p>
+            All members must follow Discord's Terms of Service
+            and Community Guidelines.
+        </p>
+    </div>
+
+
+    <div class="rule">
+        <div class="rule-number">RULE #13</div>
+        <h2>⚙️ Moderation Guidelines</h2>
+        <p>
+            Please read the moderation guidelines below to
+            understand how staff may handle rule violations.
+        </p>
+    </div>
+
+
+    <!-- Moderation Guidelines -->
+
+    <section class="moderation" id="moderation">
+
+        <h2>⚙️ Moderation Guidelines</h2>
+
+        <p>
+            Our moderation team may take action when server
+            rules are violated. The action taken depends on
+            the situation and severity of the violation.
+        </p>
+
+        <ul>
+            <li>Warnings may be issued when appropriate.</li>
+            <li>Members may be muted for rule violations.</li>
+            <li>Members may be kicked when necessary.</li>
+            <li>Serious violations may result in a ban.</li>
+            <li>Staff may take necessary action to maintain a safe community.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- Final Message -->
+
+    <div class="notice" style="margin-top:18px;">
+
+        <strong>💙 Use common sense.</strong><br><br>
+
+        Everything doesn't need to be mentioned in the rules.
+        You are expected to use common sense and be humble and
+        respectful towards each other, as well as welcoming
+        towards new members.
+
+    </div>
+
+
+    <!-- Buttons -->
+
+    <div class="buttons">
+
+        <a
+            class="button discord"
+            href="https://discord.gg/VSSr3JvG"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            💬 Return to Discord
+        </a>
+
+        <a
+            class="button top"
+            href="#top"
+        >
+            ↑ Back to Top
+        </a>
+
+    </div>
+
+
+    <!-- Footer -->
+
+    <footer>
+        <span>Jem</span> • Official Server Rules<br>
+        Please follow the rules and keep the community welcoming.
+    </footer>
+
+</div>
+
+</body>
+  </html>
